@@ -1,0 +1,13 @@
+{
+  "name": "SAMI-Cubes",
+  "description": "Volume renderings of SAMI galaxies.",
+  "author": "Amit Kapadia <akapad@gmail.com>",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "./node_modules/http-server/bin/http-server"
+  },
+  "devDependencies": {
+    "http-server": "0.5.x"
+  },
+  "engine": "node >= 0.10.12"
+}

@@ -1,0 +1,35 @@
+
+html, body {
+  color: #303030;
+  font-family: Helvetica, san-serif;
+  user-select: none ;
+}
+
+.hide {
+  display: none;
+}
+
+.container {
+  margin: 6% 4%;
+}
+
+p.filename {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.volume, .parameters {
+  display: inline-block;
+}
+
+.volume {
+  width: 50%;
+}
+
+.parameters {
+  width: 40%;
+}
+
+input[type="range"] {
+  width: 100%;
+}
