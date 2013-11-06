@@ -1,5 +1,5 @@
 
-# SAME Cubes
+# SAMI Cubes
 
 Volume renderings of two SAME galaxies.
 
