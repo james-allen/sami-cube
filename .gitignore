@@ -1,0 +1,7 @@
+.DS_Store
+node_modules
+*.fits
+*.gz
+scripts
+package.json
+README.md
