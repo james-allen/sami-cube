@@ -4,13 +4,18 @@
   var hasVolume1, hasVolume2;
   var extent = [], volume = [];
   
-  function requestData(path, index) {
-    
-    new astro.FITS(path, function(f) {
+  function requestData(arg, index) {
+    console.log(arg, index);
+    new astro.FITS(arg, function(f) {
       var cube, fname, width, height, depth, pixels, frame;
       
       cube = f.getDataUnit(0);
-      fname = path.split("data/")[1];
+      if (arg.constructor.name === 'File') {
+        fname = arg.name;
+      } else {
+        fname = arg;
+      }
+      fname = fname.split("data/")[1];
       
       // Get dimensions of volume
       width = cube.width;
@@ -118,8 +123,31 @@
     
   }
   
+  function onDragOver(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+  
+  function onDrop(e) {
+    onDragOver(e);
+    
+    var files = e.dataTransfer.files;
+    console.log(files.length);
+    if (files.length != 2) {
+      alert("Please drop two FITS files to build the visualization");
+      return;
+    }
+    
+    requestData(files[0], 0);
+    requestData(files[1], 1);
+  }
+  
   function domReady() {
     var volumeEl1, volumeEl2, volumePath1, volumePath2, volume1, volume2;
+    
+    var bodyEl = document.querySelector('body');
+    bodyEl.addEventListener('dragover', onDragOver, false);
+    bodyEl.addEventListener('drop', onDrop, false);
     
     // Get DOM elements
     volumeEl1 = document.querySelector("#volume1");
@@ -137,8 +165,8 @@
     
     attachHandlers();
     
-    requestData(volumePath1, 0);
-    requestData(volumePath2, 1);
+    // requestData(volumePath1, 0);
+    // requestData(volumePath2, 1);
     
   }
   
